@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gargamel (Smurfs 2025)
+* source:	https://sketchfab.com/3d-models/gargamel-smurfs-2025-4b34d89462194b51a18d7e6a594657b7
+* author:	Guilherme Navarro (https://sketchfab.com/guinavarro.al)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gargamel (Smurfs 2025)" (https://sketchfab.com/3d-models/gargamel-smurfs-2025-4b34d89462194b51a18d7e6a594657b7) by Guilherme Navarro (https://sketchfab.com/guinavarro.al) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
