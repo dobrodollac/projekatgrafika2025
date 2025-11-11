@@ -15,6 +15,7 @@ class MainKontroler : public engine::core::Controller {
     void draw_velikiStrumf();
     void draw_bubalo();
     void draw_gargamel();
+    void draw_kuca();
     void update_camera();
     void update() override;
     void begin_draw() override;

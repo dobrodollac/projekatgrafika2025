@@ -16,12 +16,16 @@
       "gargamel": {
         "path": "gargamel/scene.gltf",
         "flip_uvs": true
+      },
+      "kuca": {
+        "path": "kuca/scene.gltf",
+        "flip_uvs": true
       }
     }
   },
   "window": {
-    "height": 600,
+    "height": 1200,
     "title": "Hello, window!",
-    "width": 800
+    "width": 1200
   }
 }
