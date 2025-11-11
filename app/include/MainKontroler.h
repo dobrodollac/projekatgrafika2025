@@ -21,6 +21,8 @@ class MainKontroler : public engine::core::Controller {
     void begin_draw() override;
     void draw() override;
     void end_draw() override;
+    bool prikaziGargamela = false;
+    bool prethodnoG = false;
 
 public:
     std::string_view name() const override {

@@ -133,6 +133,15 @@ void MainKontroler::update_camera() {
     }
     /*auto mouse = platform->mouse();
     camera->rotate_camera(mouse.dx, mouse.dy);*/
+    bool trenutnoG = platform->key(engine::platform::KEY_G).state() == engine::platform::Key::State::Pressed;
+    if (trenutnoG && !prethodnoG) {
+        // Taster je upravo pritisnut (samo jednom)
+        prikaziGargamela = !prikaziGargamela;
+    }
+
+    prethodnoG = trenutnoG;
+
+
 
 }
 void MainKontroler::update() {
@@ -146,7 +155,9 @@ void MainKontroler::draw() {
     draw_strumfeta();
     draw_velikiStrumf();
     draw_bubalo();
-    draw_gargamel();
+    if(prikaziGargamela) {
+        draw_gargamel();
+    }
     draw_kuca();
 }
 void MainKontroler::end_draw() {
