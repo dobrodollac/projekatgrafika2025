@@ -141,6 +141,14 @@ void MainKontroler::update_camera() {
     }
 
     prethodnoG = trenutnoG;
+    bool trenutnoE = platform->key(engine::platform::KEY_E).state() == engine::platform::Key::State::Pressed;
+    if (trenutnoE && !prethodnoE) {
+        prikaziStrumfetu = !prikaziStrumfetu;
+        prikaziBubala = !prikaziBubala;
+        prikaziVelikogStrumfa = !prikaziVelikogStrumfa;
+    }
+
+    prethodnoE = trenutnoE;
 
 
 
@@ -165,9 +173,15 @@ void MainKontroler::begin_draw() {
 }
 
 void MainKontroler::draw() {
-    draw_strumfeta();
-    draw_velikiStrumf();
-    draw_bubalo();
+    if(prikaziStrumfetu) {
+        draw_strumfeta();
+    }
+    if(prikaziVelikogStrumfa) {
+        draw_velikiStrumf();
+    }
+    if(prikaziVelikogStrumfa) {
+        draw_bubalo();
+    }
     if(prikaziGargamela) {
         draw_gargamel();
     }
