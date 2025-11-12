@@ -23,6 +23,9 @@ class MainKontroler : public engine::core::Controller {
     void end_draw() override;
     bool prikaziGargamela = false;
     bool prethodnoG = false;
+    bool pokreniVelikogStrumfa = false;
+    float ugaoVelikogStrumfa = -45.0f;
+    float pozicijaVelikogStrumfa = 0.0f;
 
 public:
     std::string_view name() const override {

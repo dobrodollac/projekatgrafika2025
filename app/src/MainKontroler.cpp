@@ -59,8 +59,8 @@ void MainKontroler::draw_velikiStrumf() {
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.0f, -2.8f, -13.75f));
-    model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(.0f, -1.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(pozicijaVelikogStrumfa, -2.8f, -13.75f));
+    model = glm::rotate(model, glm::radians(ugaoVelikogStrumfa), glm::vec3(0.0f, -1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.7f));
     shader->set_mat4("model", model);
     velikiStrumf->draw(shader);
@@ -135,8 +135,9 @@ void MainKontroler::update_camera() {
     camera->rotate_camera(mouse.dx, mouse.dy);*/
     bool trenutnoG = platform->key(engine::platform::KEY_G).state() == engine::platform::Key::State::Pressed;
     if (trenutnoG && !prethodnoG) {
-        // Taster je upravo pritisnut (samo jednom)
+        ugaoVelikogStrumfa += 120.0f;
         prikaziGargamela = !prikaziGargamela;
+        pokreniVelikogStrumfa = true;
     }
 
     prethodnoG = trenutnoG;
@@ -145,6 +146,18 @@ void MainKontroler::update_camera() {
 
 }
 void MainKontroler::update() {
+    auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
+    float dt = platform->dt();
+
+    if (pokreniVelikogStrumfa) {
+        if (pozicijaVelikogStrumfa > -2.0f) {
+            pozicijaVelikogStrumfa -= 0.75f * dt;
+            if (pozicijaVelikogStrumfa <= -2.0f) {
+                pozicijaVelikogStrumfa = -2.0f;
+                pokreniVelikogStrumfa = false;
+            }
+        }
+    }
     update_camera();
 }
 void MainKontroler::begin_draw() {
