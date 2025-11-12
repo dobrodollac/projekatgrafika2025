@@ -8,6 +8,7 @@ include_directories(include/)
 add_executable(${PROJECT_NAME} ${sources} ${headers}
         include/Aplikacija.h
         include/MainKontroler.h
+        include/GUIKontroler.h
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE matf-rg-engine)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
