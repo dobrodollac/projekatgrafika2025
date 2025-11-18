@@ -16,4 +16,4 @@ void Aplikacija::app_setup() {
     main_kontroler->after(engine::core::Controller::get<engine::core::EngineControllersEnd>());
     main_kontroler->before(gui_kontroler);
 }
-} // app
+}// namespace app

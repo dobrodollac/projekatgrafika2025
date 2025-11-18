@@ -21,6 +21,6 @@ private:
 };
 
 
-} // app
+}// namespace app
 
-#endif //GUIKONTROLER_H
+#endif//GUIKONTROLER_H

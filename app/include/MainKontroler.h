@@ -21,12 +21,11 @@ class MainKontroler : public engine::core::Controller {
     void begin_draw() override;
     void draw() override;
     void end_draw() override;
+
     bool prikaziGargamela = false;
     bool prikaziVelikogStrumfa = true;
     bool prikaziStrumfetu = true;
     bool prikaziBubala = true;
-    bool prethodnoG = false;
-    bool prethodnoE = false;
     bool pokreniVelikogStrumfa = false;
     float ugaoVelikogStrumfa = -45.0f;
     float pozicijaVelikogStrumfa = 0.0f;

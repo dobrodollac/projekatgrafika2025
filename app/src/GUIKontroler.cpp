@@ -23,9 +23,8 @@ void GUIKontroler::draw() {
     auto camera = graphics->camera();
     graphics->begin_gui();
     ImGui::Begin("Informacije o trenutnom stanju kamere");
-    ImGui::Text("Pozicija kamere: (%f, %f, %f)", camera->Position.x,camera->Position.y, camera->Position.z);
+    ImGui::Text("Pozicija kamere: (%f, %f, %f)", camera->Position.x, camera->Position.y, camera->Position.z);
     ImGui::End();
     graphics->end_gui();
-
 }
-} // app
+}// namespace app

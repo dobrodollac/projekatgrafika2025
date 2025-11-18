@@ -9,9 +9,9 @@
 namespace app {
 
 class Aplikacija : public engine::core::App {
-        void app_setup() override;
+    void app_setup() override;
 };
 
-} // app
+}// namespace app
 
-#endif //APLIKACIJA_H
+#endif//APLIKACIJA_H

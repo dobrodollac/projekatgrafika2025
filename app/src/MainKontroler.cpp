@@ -23,7 +23,6 @@ void MainPlatformEventObserver::on_mouse_move(engine::platform::MousePosition po
 }*/
 
 
-
 void MainKontroler::initialize() {
     spdlog::info("Kontroler je uspesno inicijalizovan.");
     engine::graphics::OpenGL::enable_depth_testing();
@@ -48,6 +47,28 @@ void MainKontroler::draw_strumfeta() {
     model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(.0f, 1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.6f));
     shader->set_mat4("model", model);
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -0.4f, -0.3f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.15f, 0.15f, 0.2f));
+    shader->set_vec3("dirLight.specular", glm::vec3(0.1f, 0.1f, 0.1f));
+    auto camera = graphics->camera();
+    shader->set_vec3("spotLight.position", camera->Position);
+    shader->set_vec3("spotLight.direction", camera->Front);
+
+
+    shader->set_vec3("spotLight.ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+    shader->set_vec3("spotLight.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    shader->set_vec3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+    shader->set_float("spotLight.constant", 1.0f);
+    shader->set_float("spotLight.linear", 0.09f);
+    shader->set_float("spotLight.quadratic", 0.032f);
+
+    shader->set_float("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+    shader->set_float("spotLight.outerCutOff", glm::cos(glm::radians(17.5f)));
+
+
     strumfeta->draw(shader);
 }
 void MainKontroler::draw_velikiStrumf() {
@@ -63,6 +84,29 @@ void MainKontroler::draw_velikiStrumf() {
     model = glm::rotate(model, glm::radians(ugaoVelikogStrumfa), glm::vec3(0.0f, -1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.7f));
     shader->set_mat4("model", model);
+
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -0.4f, -0.3f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.15f, 0.15f, 0.2f));
+    shader->set_vec3("dirLight.specular", glm::vec3(0.1f, 0.1f, 0.1f));
+
+    auto camera = graphics->camera();
+    shader->set_vec3("spotLight.position", camera->Position);
+    shader->set_vec3("spotLight.direction", camera->Front);
+
+
+    shader->set_vec3("spotLight.ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+    shader->set_vec3("spotLight.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    shader->set_vec3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+    shader->set_float("spotLight.constant", 1.0f);
+    shader->set_float("spotLight.linear", 0.09f);
+    shader->set_float("spotLight.quadratic", 0.032f);
+
+    shader->set_float("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+    shader->set_float("spotLight.outerCutOff", glm::cos(glm::radians(17.5f)));
+
     velikiStrumf->draw(shader);
 }
 void MainKontroler::draw_bubalo() {
@@ -79,6 +123,29 @@ void MainKontroler::draw_bubalo() {
     model = glm::rotate(model, glm::radians(50.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.6f));
     shader->set_mat4("model", model);
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -0.4f, -0.3f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.15f, 0.15f, 0.2f));
+    shader->set_vec3("dirLight.specular", glm::vec3(0.1f, 0.1f, 0.1f));
+
+    auto camera = graphics->camera();
+    shader->set_vec3("spotLight.position", camera->Position);
+    shader->set_vec3("spotLight.direction", camera->Front);
+
+
+    shader->set_vec3("spotLight.ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+    shader->set_vec3("spotLight.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    shader->set_vec3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+    shader->set_float("spotLight.constant", 1.0f);
+    shader->set_float("spotLight.linear", 0.09f);
+    shader->set_float("spotLight.quadratic", 0.032f);
+
+    shader->set_float("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+    shader->set_float("spotLight.outerCutOff", glm::cos(glm::radians(17.5f)));
+
+
     bubalo->draw(shader);
 }
 void MainKontroler::draw_gargamel() {
@@ -94,6 +161,28 @@ void MainKontroler::draw_gargamel() {
     model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.15f));
     shader->set_mat4("model", model);
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -0.4f, -0.3f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.15f, 0.15f, 0.2f));
+    shader->set_vec3("dirLight.specular", glm::vec3(0.1f, 0.1f, 0.1f));
+
+    auto camera = graphics->camera();
+    shader->set_vec3("spotLight.position", camera->Position);
+    shader->set_vec3("spotLight.direction", camera->Front);
+
+    shader->set_vec3("spotLight.ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+    shader->set_vec3("spotLight.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    shader->set_vec3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+    shader->set_float("spotLight.constant", 1.0f);
+    shader->set_float("spotLight.linear", 0.09f);
+    shader->set_float("spotLight.quadratic", 0.032f);
+
+    shader->set_float("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+    shader->set_float("spotLight.outerCutOff", glm::cos(glm::radians(17.5f)));
+
+
     gargamel->draw(shader);
 }
 void MainKontroler::draw_kuca() {
@@ -109,6 +198,28 @@ void MainKontroler::draw_kuca() {
     model = glm::rotate(model, glm::radians(90.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.5f));
     shader->set_mat4("model", model);
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -0.4f, -0.3f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.15f, 0.15f, 0.2f));
+    shader->set_vec3("dirLight.specular", glm::vec3(0.1f, 0.1f, 0.1f));
+
+    auto camera = graphics->camera();
+    shader->set_vec3("spotLight.position", camera->Position);
+    shader->set_vec3("spotLight.direction", camera->Front);
+
+
+    shader->set_vec3("spotLight.ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+    shader->set_vec3("spotLight.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    shader->set_vec3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+    shader->set_float("spotLight.constant", 1.0f);
+    shader->set_float("spotLight.linear", 0.09f);
+    shader->set_float("spotLight.quadratic", 0.032f);
+
+    shader->set_float("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+    shader->set_float("spotLight.outerCutOff", glm::cos(glm::radians(17.5f)));
+
     kuca->draw(shader);
 }
 void MainKontroler::update_camera() {
@@ -133,25 +244,17 @@ void MainKontroler::update_camera() {
     }
     /*auto mouse = platform->mouse();
     camera->rotate_camera(mouse.dx, mouse.dy);*/
-    bool trenutnoG = platform->key(engine::platform::KEY_G).state() == engine::platform::Key::State::Pressed;
-    if (trenutnoG && !prethodnoG) {
+    if (platform->key(engine::platform::KeyId::KEY_G).state() == engine::platform::Key::State::JustPressed) {
         ugaoVelikogStrumfa += 120.0f;
         prikaziGargamela = !prikaziGargamela;
         pokreniVelikogStrumfa = true;
     }
 
-    prethodnoG = trenutnoG;
-    bool trenutnoE = platform->key(engine::platform::KEY_E).state() == engine::platform::Key::State::Pressed;
-    if (trenutnoE && !prethodnoE) {
+    if (platform->key(engine::platform::KeyId::KEY_E).state() == engine::platform::Key::State::JustPressed) {
         prikaziStrumfetu = !prikaziStrumfetu;
         prikaziBubala = !prikaziBubala;
         prikaziVelikogStrumfa = !prikaziVelikogStrumfa;
     }
-
-    prethodnoE = trenutnoE;
-
-
-
 }
 void MainKontroler::update() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
@@ -173,16 +276,16 @@ void MainKontroler::begin_draw() {
 }
 
 void MainKontroler::draw() {
-    if(prikaziStrumfetu) {
+    if (prikaziStrumfetu) {
         draw_strumfeta();
     }
-    if(prikaziVelikogStrumfa) {
+    if (prikaziVelikogStrumfa) {
         draw_velikiStrumf();
     }
-    if(prikaziVelikogStrumfa) {
+    if (prikaziVelikogStrumfa) {
         draw_bubalo();
     }
-    if(prikaziGargamela) {
+    if (prikaziGargamela) {
         draw_gargamel();
     }
     draw_kuca();
