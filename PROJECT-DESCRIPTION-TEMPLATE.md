@@ -1,8 +1,8 @@
 # Strumfovi
 
 162/2021 - Lenka Dobrodolac  
-Na sceni se nalaze likovi iz crtanog filma Strumfovi: Strumfeta, Velikki Strumf, Bubalo i Gargamel. Gargamel se
-pojavljuje i veliki strumf ide da obavesti Strumfetu i Bubalala da treba da nestanu.  
+Na sceni se nalaze likovi iz crtanog filma Strumfovi: Strumfeta, Veliki Strumf, Bubalo i Gargamel. Gargamel se
+pojavljuje i Veliki Strumf ide da obavesti Strumfetu i Bubala da treba da nestanu.  
 
 ## Controls
 
