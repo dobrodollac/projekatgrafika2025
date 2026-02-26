@@ -12,7 +12,7 @@ class MainKontroler : public engine::core::Controller {
     void initialize() override;
     bool loop() override;
     void draw_strumfeta();
-    void draw_velikiStrumf();
+    void draw_veliki_strumf();
     void draw_bubalo();
     void draw_gargamel();
     void draw_kuca();
@@ -22,13 +22,13 @@ class MainKontroler : public engine::core::Controller {
     void draw() override;
     void end_draw() override;
 
-    bool prikaziGargamela = false;
-    bool prikaziVelikogStrumfa = true;
-    bool prikaziStrumfetu = true;
-    bool prikaziBubala = true;
-    bool pokreniVelikogStrumfa = false;
-    float ugaoVelikogStrumfa = -45.0f;
-    float pozicijaVelikogStrumfa = 0.0f;
+    bool prikazi_gargamela = false;
+    bool prikazi_velikog_strumfa = true;
+    bool prikazi_strumfetu = true;
+    bool prikazi_bubala = true;
+    bool pokreni_velikog_strumfa = false;
+    float ugao_velikog_strumfa = -45.0f;
+    float pozicija_velikog_strumfa = 0.0f;
 
 public:
     std::string_view name() const override {

@@ -12,16 +12,6 @@
 #include <engine/resources/ResourcesController.hpp>
 
 namespace app {
-/*class MainPlatformEventObserver : public engine::platform::PlatformEventObserver {
-public:
-    void on_mouse_move(engine::platform::MousePosition position) override;
-
-};
-void MainPlatformEventObserver::on_mouse_move(engine::platform::MousePosition position) {
-    auto camera = engine::core::Controller::get<engine::graphics::GraphicsController>()->camera();
-    camera->rotate_camera(position.dx, position.dy);
-}*/
-
 
 void MainKontroler::initialize() {
     spdlog::info("Kontroler je uspesno inicijalizovan.");
@@ -71,7 +61,7 @@ void MainKontroler::draw_strumfeta() {
 
     strumfeta->draw(shader);
 }
-void MainKontroler::draw_velikiStrumf() {
+void MainKontroler::draw_veliki_strumf() {
     auto resources = get<engine::resources::ResourcesController>();
     auto graphics = get<engine::graphics::GraphicsController>();
     engine::resources::Model *velikiStrumf = resources->model("velikiStrumf");
@@ -80,8 +70,8 @@ void MainKontroler::draw_velikiStrumf() {
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(pozicijaVelikogStrumfa, -2.8f, -13.75f));
-    model = glm::rotate(model, glm::radians(ugaoVelikogStrumfa), glm::vec3(0.0f, -1.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(pozicija_velikog_strumfa, -2.8f, -13.75f));
+    model = glm::rotate(model, glm::radians(ugao_velikog_strumfa), glm::vec3(0.0f, -1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.7f));
     shader->set_mat4("model", model);
 
@@ -242,30 +232,29 @@ void MainKontroler::update_camera() {
                 .state() == engine::platform::Key::State::Pressed) {
         camera->move_camera(engine::graphics::Camera::Movement::RIGHT, dt);
     }
-    /*auto mouse = platform->mouse();
-    camera->rotate_camera(mouse.dx, mouse.dy);*/
+
     if (platform->key(engine::platform::KeyId::KEY_G).state() == engine::platform::Key::State::JustPressed) {
-        ugaoVelikogStrumfa += 120.0f;
-        prikaziGargamela = !prikaziGargamela;
-        pokreniVelikogStrumfa = true;
+        ugao_velikog_strumfa += 120.0f;
+        prikazi_gargamela = !prikazi_gargamela;
+        pokreni_velikog_strumfa = true;
     }
 
     if (platform->key(engine::platform::KeyId::KEY_E).state() == engine::platform::Key::State::JustPressed) {
-        prikaziStrumfetu = !prikaziStrumfetu;
-        prikaziBubala = !prikaziBubala;
-        prikaziVelikogStrumfa = !prikaziVelikogStrumfa;
+        prikazi_strumfetu = !prikazi_strumfetu;
+        prikazi_bubala = !prikazi_bubala;
+        prikazi_velikog_strumfa = !prikazi_velikog_strumfa;
     }
 }
 void MainKontroler::update() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
     float dt = platform->dt();
 
-    if (pokreniVelikogStrumfa) {
-        if (pozicijaVelikogStrumfa > -2.0f) {
-            pozicijaVelikogStrumfa -= 0.75f * dt;
-            if (pozicijaVelikogStrumfa <= -2.0f) {
-                pozicijaVelikogStrumfa = -2.0f;
-                pokreniVelikogStrumfa = false;
+    if (pokreni_velikog_strumfa) {
+        if (pozicija_velikog_strumfa > -2.0f) {
+            pozicija_velikog_strumfa -= 0.75f * dt;
+            if (pozicija_velikog_strumfa <= -2.0f) {
+                pozicija_velikog_strumfa = -2.0f;
+                pokreni_velikog_strumfa = false;
             }
         }
     }
@@ -276,16 +265,16 @@ void MainKontroler::begin_draw() {
 }
 
 void MainKontroler::draw() {
-    if (prikaziStrumfetu) {
+    if (prikazi_strumfetu) {
         draw_strumfeta();
     }
-    if (prikaziVelikogStrumfa) {
-        draw_velikiStrumf();
+    if (prikazi_velikog_strumfa) {
+        draw_veliki_strumf();
     }
-    if (prikaziVelikogStrumfa) {
+    if (prikazi_velikog_strumfa) {
         draw_bubalo();
     }
-    if (prikaziGargamela) {
+    if (prikazi_gargamela) {
         draw_gargamel();
     }
     draw_kuca();
