@@ -179,6 +179,7 @@ void OpenGL::disable_depth_testing() {
 }
 
 void OpenGL::clear_buffers() {
+    glClearColor(0.9f, 0.75f, 0.3f, 1.0f);
     CHECKED_GL_CALL(glClear, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 

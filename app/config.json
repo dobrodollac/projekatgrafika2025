@@ -1,11 +1,31 @@
 {
   "resources": {
     "models": {
+      "strumfeta": {
+        "path": "strumfeta/Smurfette.obj",
+        "flip_uvs": true
+      },
+      "velikiStrumf": {
+        "path": "velikiStrumf/PapaSmurf.obj",
+        "flip_uvs": true
+      },
+      "bubalo": {
+        "path": "bubalo/Brainy.obj",
+        "flip_uvs": true
+      },
+      "gargamel": {
+        "path": "gargamel/scene.gltf",
+        "flip_uvs": true
+      },
+      "kuca": {
+        "path": "kuca/scene.gltf",
+        "flip_uvs": true
+      }
     }
   },
   "window": {
-    "height": 600,
+    "height": 1200,
     "title": "Hello, window!",
-    "width": 800
+    "width": 1200
   }
 }
