@@ -11,24 +11,24 @@ namespace app {
 class MainKontroler : public engine::core::Controller {
     void initialize() override;
     bool loop() override;
-    void draw_strumfeta();
-    void draw_veliki_strumf();
-    void draw_bubalo();
-    void draw_gargamel();
-    void draw_kuca();
+    void m_draw_strumfeta();
+    void m_draw_veliki_strumf();
+    void m_draw_bubalo();
+    void m_draw_gargamel();
+    void m_draw_kuca();
     void update_camera();
     void update() override;
     void begin_draw() override;
     void draw() override;
     void end_draw() override;
 
-    bool prikazi_gargamela = false;
-    bool prikazi_velikog_strumfa = true;
-    bool prikazi_strumfetu = true;
-    bool prikazi_bubala = true;
-    bool pokreni_velikog_strumfa = false;
-    float ugao_velikog_strumfa = -45.0f;
-    float pozicija_velikog_strumfa = 0.0f;
+    bool m_prikazi_gargamela = false;
+    bool m_prikazi_velikog_strumfa = true;
+    bool m_prikazi_strumfetu = true;
+    bool m_prikazi_bubala = true;
+    bool m_pokreni_velikog_strumfa = false;
+    float m_ugao_velikog_strumfa = -45.0f;
+    float m_pozicija_velikog_strumfa = 0.0f;
 
 public:
     std::string_view name() const override {

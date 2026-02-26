@@ -24,7 +24,7 @@ bool MainKontroler::loop() {
     }
     return true;
 }
-void MainKontroler::draw_strumfeta() {
+void MainKontroler::m_draw_strumfeta() {
     auto resources = get<engine::resources::ResourcesController>();
     auto graphics = get<engine::graphics::GraphicsController>();
     engine::resources::Model *strumfeta = resources->model("strumfeta");
@@ -61,7 +61,7 @@ void MainKontroler::draw_strumfeta() {
 
     strumfeta->draw(shader);
 }
-void MainKontroler::draw_veliki_strumf() {
+void MainKontroler::m_draw_veliki_strumf() {
     auto resources = get<engine::resources::ResourcesController>();
     auto graphics = get<engine::graphics::GraphicsController>();
     engine::resources::Model *velikiStrumf = resources->model("velikiStrumf");
@@ -70,8 +70,8 @@ void MainKontroler::draw_veliki_strumf() {
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(pozicija_velikog_strumfa, -2.8f, -13.75f));
-    model = glm::rotate(model, glm::radians(ugao_velikog_strumfa), glm::vec3(0.0f, -1.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(m_pozicija_velikog_strumfa, -2.8f, -13.75f));
+    model = glm::rotate(model, glm::radians(m_ugao_velikog_strumfa), glm::vec3(0.0f, -1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(0.7f));
     shader->set_mat4("model", model);
 
@@ -99,7 +99,7 @@ void MainKontroler::draw_veliki_strumf() {
 
     velikiStrumf->draw(shader);
 }
-void MainKontroler::draw_bubalo() {
+void MainKontroler::m_draw_bubalo() {
 
     auto resources = get<engine::resources::ResourcesController>();
     auto graphics = get<engine::graphics::GraphicsController>();
@@ -138,7 +138,7 @@ void MainKontroler::draw_bubalo() {
 
     bubalo->draw(shader);
 }
-void MainKontroler::draw_gargamel() {
+void MainKontroler::m_draw_gargamel() {
     auto resources = get<engine::resources::ResourcesController>();
     auto graphics = get<engine::graphics::GraphicsController>();
     engine::resources::Model *gargamel = resources->model("gargamel");
@@ -175,7 +175,7 @@ void MainKontroler::draw_gargamel() {
 
     gargamel->draw(shader);
 }
-void MainKontroler::draw_kuca() {
+void MainKontroler::m_draw_kuca() {
     auto resources = get<engine::resources::ResourcesController>();
     auto graphics = get<engine::graphics::GraphicsController>();
     engine::resources::Model *kuca = resources->model("kuca");
@@ -234,27 +234,27 @@ void MainKontroler::update_camera() {
     }
 
     if (platform->key(engine::platform::KeyId::KEY_G).state() == engine::platform::Key::State::JustPressed) {
-        ugao_velikog_strumfa += 120.0f;
-        prikazi_gargamela = !prikazi_gargamela;
-        pokreni_velikog_strumfa = true;
+        m_ugao_velikog_strumfa += 120.0f;
+        m_prikazi_gargamela = !m_prikazi_gargamela;
+        m_pokreni_velikog_strumfa = true;
     }
 
     if (platform->key(engine::platform::KeyId::KEY_E).state() == engine::platform::Key::State::JustPressed) {
-        prikazi_strumfetu = !prikazi_strumfetu;
-        prikazi_bubala = !prikazi_bubala;
-        prikazi_velikog_strumfa = !prikazi_velikog_strumfa;
+        m_prikazi_strumfetu = !m_prikazi_strumfetu;
+        m_prikazi_bubala = !m_prikazi_bubala;
+        m_prikazi_velikog_strumfa = !m_prikazi_velikog_strumfa;
     }
 }
 void MainKontroler::update() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
     float dt = platform->dt();
 
-    if (pokreni_velikog_strumfa) {
-        if (pozicija_velikog_strumfa > -2.0f) {
-            pozicija_velikog_strumfa -= 0.75f * dt;
-            if (pozicija_velikog_strumfa <= -2.0f) {
-                pozicija_velikog_strumfa = -2.0f;
-                pokreni_velikog_strumfa = false;
+    if (m_pokreni_velikog_strumfa) {
+        if (m_pozicija_velikog_strumfa > -2.0f) {
+            m_pozicija_velikog_strumfa -= 0.75f * dt;
+            if (m_pozicija_velikog_strumfa <= -2.0f) {
+                m_pozicija_velikog_strumfa = -2.0f;
+                m_pokreni_velikog_strumfa = false;
             }
         }
     }
@@ -265,19 +265,19 @@ void MainKontroler::begin_draw() {
 }
 
 void MainKontroler::draw() {
-    if (prikazi_strumfetu) {
-        draw_strumfeta();
+    if (m_prikazi_strumfetu) {
+        m_draw_strumfeta();
     }
-    if (prikazi_velikog_strumfa) {
-        draw_veliki_strumf();
+    if (m_prikazi_velikog_strumfa) {
+        m_draw_veliki_strumf();
     }
-    if (prikazi_velikog_strumfa) {
-        draw_bubalo();
+    if (m_prikazi_bubala) {
+        m_draw_bubalo();
     }
-    if (prikazi_gargamela) {
-        draw_gargamel();
+    if (m_prikazi_gargamela) {
+        m_draw_gargamel();
     }
-    draw_kuca();
+    m_draw_kuca();
 }
 void MainKontroler::end_draw() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
